@@ -23,6 +23,7 @@ public class AdminService {
 
         if(b == null){
             System.out.println("Book Not Found");
+            return;
         }
         repo.removeBook(b);
         System.out.println("Book Removed Successfully");
@@ -31,6 +32,11 @@ public class AdminService {
     public void updateBook(int id, String bookName, String authorName, String price) {
 
         Book b = repo.findBookById(id);
+
+        if(b == null){
+            System.out.println("Book Not Found");
+            return;
+        }
 
         if(bookName!= null && !bookName.isEmpty()) b.setBookName(bookName);
         if(authorName!= null && !authorName.isEmpty()) b.setAuthorName(authorName);
@@ -45,7 +51,9 @@ public class AdminService {
 
         if(b == null){
             System.out.println("Book Not Found");
+            return;
         }
+
         System.out.println(b);
     }
 

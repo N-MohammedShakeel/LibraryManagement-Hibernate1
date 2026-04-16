@@ -17,8 +17,18 @@ public class MemberService {
     public void issueBook(int id) {
 
         Book b = repo.findBookById(id);
-        b.setStatus("Issued");
 
+        if (b == null) {
+            System.out.println("Book Not Found");
+            return;
+        }
+
+        if (b.getStatus().equals("Issued")) {
+            System.out.println("Book Already Issued");
+            return;
+        }
+
+        b.setStatus("Issued");
         repo.updateBook(b);
         System.out.println("Book Issued Successfully");
     }
@@ -26,8 +36,18 @@ public class MemberService {
     public void returnBook(int id) {
 
         Book b = repo.findBookById(id);
-        b.setStatus("Available");
 
+        if (b == null) {
+            System.out.println("Book Not Found");
+            return;
+        }
+
+        if (b.getStatus().equals("Available")) {
+            System.out.println("This Book is Not Yours");
+            return;
+        }
+
+        b.setStatus("Available");
         repo.updateBook(b);
         System.out.println("Book Returned Successfully");
     }
